@@ -1,0 +1,117 @@
+<!DOCTYPE html> 
+<html> 
+  
+<head> 
+    <title>Simple Calculator</title> 
+    <style> 
+        table { 
+            border: 10px solid darkcyan; 
+            margin-left: auto; 
+            margin-right: auto; 
+            background-color: darkslategray;
+        } 
+        input[type="text"] { 
+            padding: 20px;
+            font-size: 27px;
+            font-weight: bold; 
+            border: none;
+            border-radius: 20px;
+            border: 2px solid turquoise;
+        } 
+        input[type="button"] { 
+            width: 100%;
+            padding: 20px 30px;
+            background-color: turquoise;
+            color: teal;
+            font-size: 30px;
+            font-weight: bolder;
+            border: double;
+            border-radius: 15px;
+        }
+   </style> 
+</head> 
+  
+<body> 
+    <table id="cal"> 
+        <tr> 
+            <td colspan="3"> 
+                <input type="text" id="result" disabled> 
+            </td> 
+            <td><input type="button" onclick="clearInput()" value="c"></td> 
+        </tr> 
+  
+        <tr> 
+            <td><input type="button" onclick="append(1)" value="1"></td> 
+            <td><input type="button" onclick="append(2)" value="2"></td> 
+            <td><input type="button" onclick="append(3)" value="3"></td> 
+            <td><input type="button" onclick="divide()" value="/"></td> 
+        </tr> 
+        <tr> 
+            <td><input type="button" onclick="append(4)" value="4"></td> 
+            <td><input type="button" onclick="append(5)" value="5"></td> 
+            <td><input type="button" onclick="append(6)" value="6"></td> 
+            <td><input type="button" onclick="multiply()" value="*"></td> 
+        </tr> 
+        <tr> 
+            <td><input type="button" onclick="append(7)" value="7"></td> 
+            <td><input type="button" onclick="append(8)" value="8"></td> 
+            <td><input type="button" onclick="append(9)" value="9"></td> 
+            <td><input type="button" onclick="subtract()" value="-"></td> 
+        </tr> 
+        <tr> 
+            <td><input type="button" onclick="append(0)" value="0"></td> 
+            <td><input type="button" onclick="append('.')" value="."></td> 
+            <td><input type="button" onclick="calculate()" value="="></td> 
+            <td><input type="button" onclick="add()" value="+"></td> 
+        </tr> 
+    </table> 
+
+    <script>
+        let currentInput = '';
+        let currentOperator = '';
+
+        function append(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function add() {
+            currentOperator = '+';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentOperator;
+        }
+
+        function subtract() {
+            currentOperator = '-';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentOperator;
+        }
+
+        function multiply() {
+            currentOperator = '*';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentOperator;
+        }
+
+        function divide() {
+            currentOperator = '/';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentOperator;
+        }
+
+        function clearInput() {
+            currentInput = '';
+            currentOperator = '';
+            document.getElementById('result').value = '';
+        }
+
+        function calculate() {
+            const result = eval(currentInput);
+            document.getElementById('result').value = result;
+            currentInput = result.toString();
+            currentInput = '';
+        }
+    </script>
+</body> 
+  
+</html>  
